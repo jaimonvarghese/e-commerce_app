@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce_app/core/constants.dart';
+import 'package:e_commerce_app/core/dimention.dart';
 import 'package:e_commerce_app/screens/widgets/big_text.dart';
 import 'package:e_commerce_app/screens/widgets/icon_and_text_widget.dart';
 import 'package:e_commerce_app/screens/widgets/small_text.dart';
@@ -16,7 +17,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currentPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double _height = 220;
+  double _height = Dimention.pageViewContainer;
   @override
   void initState() {
     super.initState();
@@ -35,11 +36,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
+   
     return Column(
       children: [
+        //Slider section
         Container(
           //color: Colors.amber,
-          height: 320,
+          height: Dimention.pageView,
           child: PageView.builder(
             controller: pageController,
             itemCount: 5,
@@ -48,6 +51,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             },
           ),
         ),
+        //Dots
         DotsIndicator(
           dotsCount: 5,
           position: _currentPageValue.toInt(),
@@ -100,10 +104,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       child: Stack(
         children: [
           Container(
-            height: 220,
-            margin: const EdgeInsets.only(left: 10, right: 10),
+            height: Dimention.pageViewContainer,
+            margin:  EdgeInsets.only(left: Dimention.width10, right: Dimention.width10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(Dimention.radius30),
               color: index.isEven ? Colors.yellow : Colors.red,
               image: const DecorationImage(
                 fit: BoxFit.cover,
@@ -115,10 +119,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 120,
-              margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+              height: Dimention.pageViewTextContainer,
+              margin:  EdgeInsets.only(left: Dimention.width20, right: Dimention.width20, bottom: Dimention.height30),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(Dimention.radius30),
                 color: Colors.white,
                 boxShadow: const [
                   BoxShadow(
@@ -137,7 +141,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 ],
               ),
               child: Container(
-                padding: const EdgeInsets.only(left: 15, top: 15, right: 25),
+                padding:  EdgeInsets.only(left: 15, top: Dimention.height15, right: 25),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -166,8 +170,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         SmallText(text: "comments"),
                       ],
                     ),
-                    kheight20,
+                    kheight10,
                     const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconAndTextWidget(
                           icon: Icons.circle_sharp,
@@ -187,7 +192,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                           iconColor: Colors.redAccent,
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dimention.dart';
 import 'package:flutter/material.dart';
 
 class BigText extends StatelessWidget {
@@ -6,7 +7,7 @@ class BigText extends StatelessWidget {
     this.color = Colors.blue,
     required this.text,
     this.overflow = TextOverflow.ellipsis,
-    this.size = 20,
+    this.size = 0,
   });
   final Color color;
   final String text;
@@ -22,7 +23,7 @@ class BigText extends StatelessWidget {
       style: TextStyle(
         color: color,
         fontWeight: FontWeight.bold,
-        fontSize: size,
+        fontSize:size==0 ? Dimention.font20:size,
       ),
     );
   }
