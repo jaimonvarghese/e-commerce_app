@@ -23,9 +23,11 @@ class Dimention {
   static double width15 = screenHeight / 47.7;
   static double width20 = screenHeight / 35.8;
   static double width30 = screenHeight / 23.8;
-  
+
   //fontsize
+  static double font18 = screenHeight / 39.7;
   static double font20 = screenHeight / 35.8;
+  static double font26 = screenHeight / 27.5;
 
   //radius
   static double radius20 = screenHeight / 35.8;
@@ -38,4 +40,6 @@ class Dimention {
 
   static double listViewImgSize = screenWidth / 3.0;
   static double listViewTextContSize = screenWidth / 3.6;
+
+  static double popularFoodImgSize = screenHeight / 2.04;
 }

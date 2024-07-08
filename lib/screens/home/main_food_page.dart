@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/core/dimention.dart';
 import 'package:e_commerce_app/screens/home/widget/food_page_body.dart';
+import 'package:e_commerce_app/screens/home/widget/popular_food_detail.dart';
 import 'package:e_commerce_app/screens/widgets/big_text.dart';
 import 'package:e_commerce_app/screens/widgets/small_text.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class _MyWidgetState extends State<MainFoodPage> {
       body: Column(
         children: [
           Container(
+            
             child: Container(
               margin: EdgeInsets.only(
                   top: Dimention.height45, bottom: Dimention.height15),
@@ -67,6 +69,7 @@ class _MyWidgetState extends State<MainFoodPage> {
               child: FoodPageBody(),
             ),
           ),
+          
         ],
       ),
     );

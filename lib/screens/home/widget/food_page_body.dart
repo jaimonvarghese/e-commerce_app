@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce_app/core/constants.dart';
 import 'package:e_commerce_app/core/dimention.dart';
+import 'package:e_commerce_app/screens/widgets/app_column.dart';
 import 'package:e_commerce_app/screens/widgets/big_text.dart';
 import 'package:e_commerce_app/screens/widgets/icon_and_text_widget.dart';
 import 'package:e_commerce_app/screens/widgets/small_text.dart';
@@ -37,10 +38,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       children: [
-        
         //Slider section
         Container(
           //color: Colors.amber,
@@ -72,6 +71,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         ),
 
         kheight30,
+
+        //Popular food section
         Container(
           margin: EdgeInsets.only(left: Dimention.width20),
           child: Row(
@@ -101,7 +102,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           ),
         ),
-
+        //popular food section listview
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -140,8 +141,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
-                            left: Dimention.width10,
-                            right: Dimention.width10),
+                            left: Dimention.width10, right: Dimention.width10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -154,8 +154,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             SmallText(text: "With chinese characteristics"),
                             kheight10,
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 IconAndTextWidget(
                                   icon: Icons.circle_sharp,
@@ -266,61 +265,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               child: Container(
                 padding: EdgeInsets.only(
                     left: 15, top: Dimention.height15, right: 25),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(
-                      text: "Chinese Side",
-                      color: Colors.black,
-                    ),
-                    kheight10,
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(
-                            5,
-                            (index) => const Icon(
-                              Icons.star,
-                              color: Colors.blue,
-                              size: 16,
-                            ),
-                          ),
-                        ),
-                        kwidth10,
-                        SmallText(text: "4.5"),
-                        kwidth5,
-                        SmallText(text: "1287"),
-                        kwidth5,
-                        SmallText(text: "comments"),
-                      ],
-                    ),
-                    kheight10,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndTextWidget(
-                          icon: Icons.circle_sharp,
-                          text: "Normal",
-                          iconColor: Colors.orange,
-                          size: Dimention.iconSize24,
-                        ),
-                        kwidth10,
-                        IconAndTextWidget(
-                          icon: Icons.location_on,
-                          text: "1.7km",
-                          iconColor: Colors.blue,
-                          size: Dimention.iconSize24,
-                        ),
-                        kwidth10,
-                        IconAndTextWidget(
-                          icon: Icons.access_time_rounded,
-                          text: "32min",
-                          iconColor: Colors.redAccent,
-                          size: Dimention.iconSize24,
-                        ),
-                      ],
-                    ),
-                  ],
+                child: const AppColumn(
+                  text: "Chinese Side",
                 ),
               ),
             ),
