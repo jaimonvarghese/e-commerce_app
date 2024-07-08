@@ -15,14 +15,17 @@ class MainFoodPage extends StatefulWidget {
 class _MyWidgetState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 233, 229, 229),
       body: Column(
         children: [
           Container(
             child: Container(
-              margin:  EdgeInsets.only(top: Dimention.height45, bottom: Dimention.height15),
-              padding:  EdgeInsets.only(left: Dimention.width20, right: Dimention.width20),
+              margin: EdgeInsets.only(
+                  top: Dimention.height45, bottom: Dimention.height15),
+              padding: EdgeInsets.only(
+                  left: Dimention.width20, right: Dimention.width20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -43,7 +46,7 @@ class _MyWidgetState extends State<MainFoodPage> {
                   Container(
                     width: Dimention.height45,
                     height: Dimention.height45,
-                    child:  Center(
+                    child: Center(
                       child: Icon(
                         Icons.search,
                         color: Colors.white,
@@ -59,7 +62,11 @@ class _MyWidgetState extends State<MainFoodPage> {
               ),
             ),
           ),
-          const FoodPageBody(),
+          const Expanded(
+            child: SingleChildScrollView(
+              child: FoodPageBody(),
+            ),
+          ),
         ],
       ),
     );

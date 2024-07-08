@@ -5,6 +5,7 @@ import 'package:e_commerce_app/screens/widgets/big_text.dart';
 import 'package:e_commerce_app/screens/widgets/icon_and_text_widget.dart';
 import 'package:e_commerce_app/screens/widgets/small_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -36,9 +37,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-   
+    
     return Column(
       children: [
+        
         //Slider section
         Container(
           //color: Colors.amber,
@@ -67,7 +69,124 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           // onTap: (pos) {
           //   setState(() => _currentPosition = pos);
           // },
-        )
+        ),
+
+        kheight30,
+        Container(
+          margin: EdgeInsets.only(left: Dimention.width20),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(
+                text: "Popular",
+                color: Colors.black,
+              ),
+              kwidth10,
+              Container(
+                margin: const EdgeInsets.only(
+                  bottom: 3,
+                ),
+                child: BigText(
+                  text: ".",
+                  color: Colors.black26,
+                ),
+              ),
+              kwidth10,
+              Container(
+                margin: const EdgeInsets.only(
+                  bottom: 5,
+                ),
+                child: SmallText(text: "Food Pariring"),
+              ),
+            ],
+          ),
+        ),
+
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: 10,
+          itemBuilder: (context, intdex) {
+            return Container(
+              margin: EdgeInsets.only(
+                  left: Dimention.width20,
+                  right: Dimention.width20,
+                  bottom: Dimention.height10),
+              child: Row(
+                children: [
+                  //image section
+                  Container(
+                    width: Dimention.listViewImgSize,
+                    height: Dimention.height120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimention.radius20),
+                      color: Colors.white10,
+                      image: const DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: Dimention.listViewTextContSize,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(Dimention.radius20),
+                          bottomRight: Radius.circular(Dimention.radius20),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: Dimention.width10,
+                            right: Dimention.width10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            BigText(
+                              text: "Nutritious fruit meal in china",
+                              color: Colors.black,
+                              size: 16,
+                            ),
+                            SmallText(text: "With chinese characteristics"),
+                            kheight10,
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconAndTextWidget(
+                                  icon: Icons.circle_sharp,
+                                  text: "Normal",
+                                  iconColor: Colors.orange,
+                                  size: Dimention.iconSize18,
+                                ),
+                                IconAndTextWidget(
+                                  icon: Icons.location_on,
+                                  text: "1.7km",
+                                  iconColor: Colors.blue,
+                                  size: Dimention.iconSize18,
+                                ),
+                                IconAndTextWidget(
+                                  icon: Icons.access_time_rounded,
+                                  text: "32min",
+                                  iconColor: Colors.redAccent,
+                                  size: Dimention.iconSize18,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
       ],
     );
   }
@@ -105,7 +224,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children: [
           Container(
             height: Dimention.pageViewContainer,
-            margin:  EdgeInsets.only(left: Dimention.width10, right: Dimention.width10),
+            margin: EdgeInsets.only(
+                left: Dimention.width10, right: Dimention.width10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Dimention.radius30),
               color: index.isEven ? Colors.yellow : Colors.red,
@@ -120,7 +240,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: Dimention.pageViewTextContainer,
-              margin:  EdgeInsets.only(left: Dimention.width20, right: Dimention.width20, bottom: Dimention.height30),
+              margin: EdgeInsets.only(
+                  left: Dimention.width20,
+                  right: Dimention.width20,
+                  bottom: Dimention.height30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimention.radius30),
                 color: Colors.white,
@@ -141,7 +264,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 ],
               ),
               child: Container(
-                padding:  EdgeInsets.only(left: 15, top: Dimention.height15, right: 25),
+                padding: EdgeInsets.only(
+                    left: 15, top: Dimention.height15, right: 25),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -171,25 +295,28 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ],
                     ),
                     kheight10,
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconAndTextWidget(
                           icon: Icons.circle_sharp,
                           text: "Normal",
                           iconColor: Colors.orange,
+                          size: Dimention.iconSize24,
                         ),
                         kwidth10,
                         IconAndTextWidget(
                           icon: Icons.location_on,
                           text: "1.7km",
                           iconColor: Colors.blue,
+                          size: Dimention.iconSize24,
                         ),
                         kwidth10,
                         IconAndTextWidget(
                           icon: Icons.access_time_rounded,
                           text: "32min",
                           iconColor: Colors.redAccent,
+                          size: Dimention.iconSize24,
                         ),
                       ],
                     ),

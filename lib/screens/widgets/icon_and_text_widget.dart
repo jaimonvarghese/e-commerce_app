@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 class IconAndTextWidget extends StatelessWidget {
   final IconData icon;
   final String text;
+  double size;
 
   final Color iconColor;
-  const IconAndTextWidget({
+   IconAndTextWidget({
     super.key,
     required this.icon,
     required this.text,
     required this.iconColor,
+    this.size = 0,
   });
 
   @override
@@ -22,7 +24,7 @@ class IconAndTextWidget extends StatelessWidget {
         Icon(
           icon,
           color: iconColor,
-          size: Dimention.iconSize24,
+          size: size,
         ),
         kwidth5,
         SmallText(
