@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 
 class AppColumn extends StatelessWidget {
   final String text;
-  const AppColumn({super.key, required this.text});
+  
+  AppColumn({
+    super.key,
+    required this.text,
+    
+  });
 
   @override
   Widget build(BuildContext context) {

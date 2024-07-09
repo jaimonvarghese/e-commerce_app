@@ -63,7 +63,7 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AppColumn(
+                   AppColumn(
                     text: 'Chinese Side',
                   ),
                   kheight10,
