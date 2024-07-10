@@ -1,11 +1,13 @@
 import 'package:e_commerce_app/core/constants.dart';
 import 'package:e_commerce_app/core/dimention.dart';
+import 'package:e_commerce_app/screens/home/main_food_page.dart';
 import 'package:e_commerce_app/screens/widgets/app_column.dart';
 import 'package:e_commerce_app/screens/widgets/app_icon.dart';
 import 'package:e_commerce_app/screens/widgets/big_text.dart';
 import 'package:e_commerce_app/screens/widgets/exandable_text_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({super.key});
@@ -23,10 +25,12 @@ class PopularFoodDetail extends StatelessWidget {
               width: double.infinity,
               height: Dimention.popularFoodImgSize,
               decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                          "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"),),),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"),
+                ),
+              ),
             ),
           ),
           //Icons Widget
@@ -34,10 +38,14 @@ class PopularFoodDetail extends StatelessWidget {
             top: Dimention.height45,
             left: Dimention.width20,
             right: Dimention.width20,
-            child: const Row(
+            child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(() => MainFoodPage());
+                    },
+                    child: AppIcon(icon: Icons.arrow_back_ios)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
@@ -63,7 +71,7 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   AppColumn(
+                  AppColumn(
                     text: 'Chinese Side',
                   ),
                   kheight10,
@@ -74,7 +82,7 @@ class PopularFoodDetail extends StatelessWidget {
                   kheight10,
                   //expandble widget
                   const Expanded(
-                    child:  SingleChildScrollView(
+                    child: SingleChildScrollView(
                       child: ExandableTextWidget(
                           text:
                               "The process of food photography begins with the purchase of the food and ingredients. Only the most visually perfect foodstuffs are acceptable and multiple backup or test items are usually needed. As a result, purchase of the food and ingredients is a very time-consuming process."),
