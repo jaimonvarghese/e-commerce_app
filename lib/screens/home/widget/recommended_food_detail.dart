@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/controlers/recommended_product_controler.dart';
 import 'package:e_commerce_app/core/constants.dart';
 import 'package:e_commerce_app/core/dimention.dart';
 import 'package:e_commerce_app/core/routes_helper.dart';
@@ -8,25 +9,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
+import '../../../core/string.dart';
+
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  int pageId;
+  RecommendedFoodDetail({super.key, required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductControler>().recommendedProductList[pageId];
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: 80,
-            title:  Row(
+            title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: (){
-                    Get.toNamed(RoutesHelper.getInitial());
-                  },
-                  child: AppIcon(icon: Icons.clear)),
+                    onTap: () {
+                      Get.toNamed(RoutesHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
@@ -36,7 +43,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Center(
                   child: BigText(
                     size: Dimention.font26,
-                    text: "Chinese Side",
+                    text: product.name!,
                     color: Colors.black,
                   ),
                 ),
@@ -56,8 +63,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: Image(
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                    "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"),
+                image: NetworkImage("$BASE_URL$UPLOAD_URL${product.img!}"),
                 width: double.maxFinite,
               ),
             ),
@@ -69,8 +75,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   margin: EdgeInsets.only(
                       left: Dimention.width20, right: Dimention.width20),
                   child: ExandableTextWidget(
-                    text:
-                        "For a long time, food photographs tended to be shot and composed in a manner similar to the way people were used to encountering their food: laid out on a table setting and shot from an overhead perspectivFor a long time, food photographs tended to be shot and composed in a manner similar to the way people were used to encountering their food: laid out on a table setting and shot from an overhead perspectivFor a long time, food photographs tended to be shot and composed in a manner similar to the way people were used to encountering their food: laid out on a table setting and shot from an overhead perspectiv",
+                    text: product.description!,
                   ),
                 )
               ],
@@ -97,7 +102,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconColor: Colors.white,
                 ),
                 BigText(
-                  text: "\$12.88  X  0",
+                  text: "\$ ${product.price!} X  0",
                   color: Colors.black,
                   size: Dimention.font26,
                 ),
