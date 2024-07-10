@@ -1,5 +1,8 @@
+import 'package:e_commerce_app/controlers/popular_product_controler.dart';
 import 'package:e_commerce_app/core/constants.dart';
 import 'package:e_commerce_app/core/dimention.dart';
+import 'package:e_commerce_app/core/string.dart';
+import 'package:e_commerce_app/models/product_model.dart';
 import 'package:e_commerce_app/screens/home/main_food_page.dart';
 import 'package:e_commerce_app/screens/widgets/app_column.dart';
 import 'package:e_commerce_app/screens/widgets/app_icon.dart';
@@ -10,10 +13,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
+  int pageId;
+  PopularFoodDetail({super.key, required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductControler>().popularProductList[pageId];
+    // print("page id is" + pageId.toString());
+    // print("product name is " + product.name.toString());
     return Scaffold(
       body: Stack(
         children: [
@@ -24,11 +32,10 @@ class PopularFoodDetail extends StatelessWidget {
             child: Container(
               width: double.infinity,
               height: Dimention.popularFoodImgSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"),
+                  image: NetworkImage('$BASE_URL$UPLOAD_URL${product.img!}'),
                 ),
               ),
             ),
@@ -38,12 +45,12 @@ class PopularFoodDetail extends StatelessWidget {
             top: Dimention.height45,
             left: Dimention.width20,
             right: Dimention.width20,
-            child:  Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                     onTap: () {
-                      Get.to(() => MainFoodPage());
+                      Navigator.of(context).pop();
                     },
                     child: AppIcon(icon: Icons.arrow_back_ios)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
@@ -72,7 +79,7 @@ class PopularFoodDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: 'Chinese Side',
+                    text: '${product.name}',
                   ),
                   kheight10,
                   BigText(
@@ -81,11 +88,9 @@ class PopularFoodDetail extends StatelessWidget {
                   ),
                   kheight10,
                   //expandble widget
-                  const Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
-                      child: ExandableTextWidget(
-                          text:
-                              "The process of food photography begins with the purchase of the food and ingredients. Only the most visually perfect foodstuffs are acceptable and multiple backup or test items are usually needed. As a result, purchase of the food and ingredients is a very time-consuming process."),
+                      child: ExandableTextWidget(text: product.description),
                     ),
                   ),
                 ],
@@ -150,8 +155,9 @@ class PopularFoodDetail extends StatelessWidget {
                 color: Colors.blue,
               ),
               child: BigText(
-                text: "\$10 | Add to Cart",
+                text: "\$ ${product.price!} | Add to Cart",
                 color: Colors.white,
+                size: Dimention.font18,
               ),
             ),
           ],
