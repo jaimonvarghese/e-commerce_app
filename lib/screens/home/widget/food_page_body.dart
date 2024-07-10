@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce_app/controlers/popular_product_controler.dart';
+import 'package:e_commerce_app/controlers/recommended_product_controler.dart';
 import 'package:e_commerce_app/core/constants.dart';
 import 'package:e_commerce_app/core/dimention.dart';
 import 'package:e_commerce_app/core/string.dart';
@@ -60,7 +61,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       },
                     ),
                   )
-                : const CircularProgressIndicator(color: Colors.blue,);
+                : const CircularProgressIndicator(
+                    color: Colors.blue,
+                  );
           },
         ),
         //Dots
@@ -95,7 +98,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               BigText(
-                text: "Popular",
+                text: "Recommended",
                 color: Colors.black,
               ),
               kwidth10,
@@ -119,87 +122,102 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         //popular food section listview
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: 10,
-          itemBuilder: (context, intdex) {
-            return Container(
-              margin: EdgeInsets.only(
-                  left: Dimention.width20,
-                  right: Dimention.width20,
-                  bottom: Dimention.height10),
-              child: Row(
-                children: [
-                  //image section
-                  Container(
-                    width: Dimention.listViewImgSize,
-                    height: Dimention.height120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimention.radius20),
-                      color: Colors.white10,
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                            "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: Dimention.listViewTextContSize,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(Dimention.radius20),
-                          bottomRight: Radius.circular(Dimention.radius20),
+        GetBuilder<RecommendedProductControler>(
+          builder: (recommendedProduct) {
+            return
+                recommendedProduct.isLoaded
+                    ?
+                ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: recommendedProduct.recommendedProductList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(
+                      left: Dimention.width20,
+                      right: Dimention.width20,
+                      bottom: Dimention.height10),
+                  child: Row(
+                    children: [
+                      //image section
+                      Container(
+                        width: Dimention.listViewImgSize,
+                        height: Dimention.height120,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimention.radius20),
+                          color: Colors.white10,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                //  "$BASE_URL/uploads/ ${popularProduct.img!}"
+                                '$BASE_URL$UPLOAD_URL${recommendedProduct.recommendedProductList[index].img!}'),
+                          ),
                         ),
-                        color: Colors.white,
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: Dimention.width10, right: Dimention.width10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            BigText(
-                              text: "Nutritious fruit meal in china",
-                              color: Colors.black,
-                              size: 16,
+                      Expanded(
+                        child: Container(
+                          height: Dimention.listViewTextContSize,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(Dimention.radius20),
+                              bottomRight: Radius.circular(Dimention.radius20),
                             ),
-                            SmallText(text: "With chinese characteristics"),
-                            kheight10,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: Dimention.width10,
+                                right: Dimention.width10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                IconAndTextWidget(
-                                  icon: Icons.circle_sharp,
-                                  text: "Normal",
-                                  iconColor: Colors.orange,
-                                  size: Dimention.iconSize18,
+                                BigText(
+                                  text:
+                                      '${recommendedProduct.recommendedProductList[index].name!}',
+                                  color: Colors.black,
+                                  size: 16,
                                 ),
-                                IconAndTextWidget(
-                                  icon: Icons.location_on,
-                                  text: "1.7km",
-                                  iconColor: Colors.blue,
-                                  size: Dimention.iconSize18,
-                                ),
-                                IconAndTextWidget(
-                                  icon: Icons.access_time_rounded,
-                                  text: "32min",
-                                  iconColor: Colors.redAccent,
-                                  size: Dimention.iconSize18,
+                                SmallText(text: "With chinese characteristics"),
+                                kheight10,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconAndTextWidget(
+                                      icon: Icons.circle_sharp,
+                                      text: "Normal",
+                                      iconColor: Colors.orange,
+                                      size: Dimention.iconSize18,
+                                    ),
+                                    IconAndTextWidget(
+                                      icon: Icons.location_on,
+                                      text: "1.7km",
+                                      iconColor: Colors.blue,
+                                      size: Dimention.iconSize18,
+                                    ),
+                                    IconAndTextWidget(
+                                      icon: Icons.access_time_rounded,
+                                      text: "32min",
+                                      iconColor: Colors.redAccent,
+                                      size: Dimention.iconSize18,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            );
+                      )
+                    ],
+                  ),
+                );
+              },
+            )
+            : CircularProgressIndicator(
+                color: Colors.blue,
+              );
           },
         ),
       ],
@@ -248,7 +266,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 fit: BoxFit.cover,
                 image: NetworkImage(
                     //  "$BASE_URL/uploads/ ${popularProduct.img!}"
-                    '$BASE_URL/uploads/${popularProduct.img!}'),
+                    '$BASE_URL$UPLOAD_URL${popularProduct.img!}'),
               ),
             ),
           ),
