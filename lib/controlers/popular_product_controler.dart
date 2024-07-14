@@ -4,6 +4,8 @@ import 'package:e_commerce_app/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../models/cart_model.dart';
+
 class PopularProductControler extends GetxController {
   final PopularProductRepo popularProductRepo;
 
@@ -52,6 +54,10 @@ class PopularProductControler extends GetxController {
         backgroundColor: Colors.blue,
         colorText: Colors.white,
       );
+      if (_inCartItem > 0) {
+        _quantity = -_inCartItem;
+        return _quantity;
+      }
       return 0;
     } else if ((inCartItem + quantity) > 20) {
       Get.snackbar(
@@ -99,5 +105,9 @@ class PopularProductControler extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }

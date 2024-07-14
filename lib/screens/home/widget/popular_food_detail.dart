@@ -4,6 +4,7 @@ import 'package:e_commerce_app/core/constants.dart';
 import 'package:e_commerce_app/core/dimention.dart';
 import 'package:e_commerce_app/core/routes_helper.dart';
 import 'package:e_commerce_app/core/string.dart';
+import 'package:e_commerce_app/screens/cart/cart_page.dart';
 
 import 'package:e_commerce_app/screens/widgets/app_column.dart';
 import 'package:e_commerce_app/screens/widgets/app_icon.dart';
@@ -65,11 +66,16 @@ class PopularFoodDetail extends StatelessWidget {
                             ? Positioned(
                                 right: 0,
                                 top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                  backgroundColor: Colors.blue,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => CartPage());
+                                  },
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: Colors.blue,
+                                  ),
                                 ))
                             : Container(),
                         Get.find<PopularProductControler>().totalItems >= 1
@@ -80,8 +86,8 @@ class PopularFoodDetail extends StatelessWidget {
                                   text: Get.find<PopularProductControler>()
                                       .totalItems
                                       .toString(),
-                                      size: 12,
-                                      color: Colors.white,
+                                  size: 12,
+                                  color: Colors.white,
                                 ),
                               )
                             : Container()
